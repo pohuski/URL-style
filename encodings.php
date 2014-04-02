@@ -2,7 +2,7 @@
 
 <?php 
 //Legacy Style inclusions -- this will iterate through so hard-coded markup won't be needed (future)
-
+?>
 /* PAGE STYLES */
 	<?php if(isset($_GET['p-bgc'])){ ?>
 		body{
