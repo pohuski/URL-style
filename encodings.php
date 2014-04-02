@@ -1,86 +1,4 @@
-<style>
-
-<?php 
-//Legacy Style inclusions -- this will iterate through so hard-coded markup won't be needed (future)
-?>
-/* PAGE STYLES */
-/*
-	<?php if(isset($_GET['p-bgc'])){ ?>
-		body{
-		background: #<?php echo $_GET['p-bgc']?>;
-		}
-	<?php } ?>
-
-	<?php if(isset($_GET['p-c'])){ ?>
-		body{
-		color: #<?php echo $_GET['p-c']?>;
-		}
-	<?php } ?>
-*/
-
-/* BUTTON STYLES */
-/*
-	<?php if(isset($_GET['b-bgc'])){ ?>
-		button{
-		background: #<?php echo $_GET['b-bgc']?>;
-		}
-	<?php } ?>
-
-	<?php if(isset($_GET['b-c'])){ ?>
-		button{
-		color: #<?php echo $_GET['b-c']?>;
-		}
-	<?php } ?>
-
-	<?php if(isset($_GET['b-bdw'])){ ?>
-		button{
-		border-width: <?php echo $_GET['b-bdw']?>px;
-		}
-	<?php } ?>
-*/
-</style>
-
-
-<?php 
-
-	// Each item in array --> do a CSS key with a value
-	// E.g.: 
-	// 		for input, button, and select
-	//		make color, #000
-
-
-	//Need Functions
-	//	1. Takes URL parse key and makes it equal to css selector 
-	//		`--  	bg=000  --> bg = 'background'
-	//				cl=fff 	--> cl = 'color'
-	//	1. Takes URL parse value and makes it equal to css selector 
-	//		`--  	bg=000  --> '$value' = $_GET['bg']
-	//				cl=fff 	--> '$value' = $_GET['cl']
-	//
-	//	2. For each selector in the previous array, assign a css property and css value
-
-	
-	
-
-	//BORDER
-	//$bdr 	= "border-radius";
-	//$bds 	= "border-style";
-	//$bdw 	= "border-width";
-
-	//COLOR
-	//$c 		= "color";
-
-	//BACKGROUND
-	//$bgc = "background-color";
-	//$bgi = "background-image";
-
-	//Page Styles Prefix
-	//$value1 = $_GET["p-bgc"].split("-")[0];
-	//$value2 = $_GET["p-bgc"].split("-")[1];
-
-
-	//echo "$value1";
-	//echo "$value2";
+<?php
 
 /*
 	// Get the URL query
@@ -115,35 +33,34 @@
 
 
 function debug_to_console( $d, $t = "title" ) {
+    
     if ( is_array( $d ) )
         $output = "<script>console.log( '$t: " . implode( ',', $d) . "' );</script>";
     else
         $output = "<script>console.log( '$t: " . $d . "' );</script>";
 
     echo $output;
+
 }
 
-	?>
-
-
-
-
-
-	<?php 
 
 $abbreviations  = array( 
-
+	//Elements
 	"p" 	=> "body",
 	"b"		=> "button",
+	"i"		=> "input",
+
+	//Properties
 	"c"		=> "color",
 	"bgc"	=> "background-color",
-	"bdw"	=> "border-width"
-
+	"bdw"	=> "border-width",
+	"fs"	=> "font-size"
 );
 
 
 //Gets the URL, takes the keys and explodes them into two parts with the "-" being the separator
-function explodeURL () {
+function output_styles () {
+	
 	foreach ($_GET as $key => $value) { 
 		$segment 	= explode("-", $key, 2);
 		$selector 	= $segment[0];
@@ -162,11 +79,12 @@ function explodeURL () {
 		//echo "<br />";
 
 		build_styles($selector, $property, $value); //USES build_styles() FUNCTION
-
 	}
+
 }
 
 
+// Creates the style annotations based on type of selector
 function build_styles($selector, $property, $value) {
 
 	switch($property) {
@@ -176,53 +94,17 @@ function build_styles($selector, $property, $value) {
 					break;
 
 		case 	$property === "border-width" ||
-				$property === "width":
+				$property === "width" ||
+				$property === "font-size":
 					$value = $value."px";
 					break;
 	}
 
 	$output = "<style>" . $selector . "{" . $property . ":" . $value . "}</style>"; // Standard CSS Output
 	echo $output;
+
 }
 
-
-explodeURL();
-
-
-	
-	
-
-	$fooz = "c";
-
-	//echo $abbreviations[$fooz];
-
-/*
-	print_r($abbreviations);
-
-
-	function decodingStyles() {
-		
-		explodeURL();
-
-	}
-*/
-
-
-/*
-	function decodingController( $selector, $property ) {
-		
-		if(isset($_GET['p-bgc'])){
-			decodingStyles($property) {
-
-			}
-		}
-
-	}
-
-*/
-
-
-	?>
 
 
 

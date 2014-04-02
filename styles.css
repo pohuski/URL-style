@@ -1,11 +1,20 @@
 
 * {
 	box-sizing: border-box;
-	font-size: 16px;
 }
 
 body {
 	width:700px;
+	background:#777;
+	color:#fff;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+body,
+input,
+select,
+textarea {
+	font-size: 16px;
 }
 
 section {
@@ -15,9 +24,32 @@ section {
 
 h2 {
 	float: right;
-	border-bottom: 1px solid #aaa;
 	clear: both;
 	width: 100%;
+	margin: 0;
+	padding: 0.25em 0.25em 0.25em 0.5em;
+	border-bottom: 1px solid #888;
+	background: #555;
+	border-top-left-radius: 0.5em;
+	border-top-right-radius: 0.5em;
+}
+
+h2:after {
+	content:"show/hide";
+	font-size: 12px;
+	text-align:right;
+	float:right;
+	background: #444;
+	color: #888;
+	border-radius: 0.5em;
+	padding: 0.25em 0.5em;
+	font-weight: normal;
+	margin: 0.25em;
+}
+
+.closed h2 {
+	border-radius: 0.5em;
+	transition: all 1s;
 }
 
 label {
@@ -29,34 +61,106 @@ label {
 	vertical-align: text-bottom;
 }
 
+input,
+textarea {
+	letter-spacing:0.1em;
+	background: #444;
+	color: #fff;
+	-webkit-appearance: none;
+	outline: 0;
+	border:0;
+	text-align:left;
+}
+
 input {
 	width: 36%;
 	float: right;
-	text-align:left;
 	padding: 0.5em;
 	margin: 0.25em 0;
 }
 
 input[type="range"] {
 	width: 20%;
+	height:1em;
+	border-radius: 0.5em;
+	margin: 0.75em 0;
+	padding: 0;
+	box-shadow: 0px 1px 0px #ccc,
+				0px -1px 0px #555;
 }
 input.range-total {
-	width: 10%;
-	margin-left: 6%;
+	width: 8%;
+	margin-left: 3%;
+	position: relative;
+	color: #ccc;
+	background: rgba(0,0,0,0.1);
+	border-radius: 1em;
+	text-align: center;
 }
 
 button {
-	width: 30%;
+	width: 36%;
 	float: right;
-	margin-right: 5%;
-	padding: 0.5em;
+	margin-right: 0%;
+	padding: 1em;
 	clear: both;
+	font-size: 18px;
+	background: #ccc;
+	color: #000;
+	border: none;
+	-webkit-appearance: none;
 }
 
 textarea {
-	width: 100%;
-	float:left;
-	text-align:left;
-	margin:0;
+	width: 95%;
+	height: 10em;
+	float: right;
+	clear: both;
+	margin:1em 0 3em 0;
 	padding:0.25em;
 }
+
+#RESET {
+	width:auto !important;
+	height: auto !important;
+	overflow: auto !important;
+	font-size: 18px !important;
+	background: #ccc !important;
+	color: #000 !important;
+	border-radius: 0px !important;
+	font-family: arial, sans-serif !important;
+	padding: 1em !important;
+	margin: 0em 1em 1em 0em !important;
+	text-decoration: none !important;
+	text-shadow: 0px 1px 1px #ddd !important;
+	border: 2px solid #aaa !important;
+	display: block !important;
+	box-shadow: 0px 2px 2px #000 !important;
+}
+
+.content {
+	background: #666;
+	overflow: auto;
+	width: 100%;
+	height: auto;
+	padding: 1em;
+	margin-bottom: 1em;
+	border-bottom-left-radius: 0.5em;
+	border-bottom-right-radius: 0.5em;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.units {
+	width: 4%;
+	padding: 0.5em;
+	margin: 0.25em 0;
+	display: block;
+	float: right;
+}
+
+
+
+
