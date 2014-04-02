@@ -4,6 +4,7 @@
 //Legacy Style inclusions -- this will iterate through so hard-coded markup won't be needed (future)
 ?>
 /* PAGE STYLES */
+/*
 	<?php if(isset($_GET['p-bgc'])){ ?>
 		body{
 		background: #<?php echo $_GET['p-bgc']?>;
@@ -15,9 +16,10 @@
 		color: #<?php echo $_GET['p-c']?>;
 		}
 	<?php } ?>
-
+*/
 
 /* BUTTON STYLES */
+/*
 	<?php if(isset($_GET['b-bgc'])){ ?>
 		button{
 		background: #<?php echo $_GET['b-bgc']?>;
@@ -35,7 +37,7 @@
 		border-width: <?php echo $_GET['b-bdw']?>px;
 		}
 	<?php } ?>
-
+*/
 </style>
 
 
@@ -129,7 +131,15 @@ function debug_to_console( $d, $t = "title" ) {
 
 	<?php 
 
+$abbreviations  = array( 
 
+	"p" 	=> "body",
+	"b"		=> "button",
+	"c"		=> "color",
+	"bgc"	=> "background-color",
+	"bdw"	=> "border-width"
+
+);
 
 
 //Gets the URL, takes the keys and explodes them into two parts with the "-" being the separator
@@ -139,32 +149,54 @@ function explodeURL () {
 		$selector 	= $segment[0];
 		$property 	= $segment[1];
 		$value		= $value;
+		
+		global $abbreviations;
+
+		$selector = $abbreviations[$selector];
+		$property = $abbreviations[$property];
 
 		//DEBUGGING
-		echo "<br />selector: " 	. $selector;
-		echo "<br />property: " 	. $property;
-		echo "<br />value: " 		. $value;
-		echo "<br />";
+		//echo "<br />\$selector: " 	. $selector;
+		//echo "<br />\$property: " 	. $property;
+		//echo "<br />\$value: " 		. $value;
+		//echo "<br />";
 
-		//RETURN VALUE
-		//return $selector;
-		//return $property;
+		build_styles($selector, $property, $value); //USES build_styles() FUNCTION
 
 	}
 }
 
+
+function build_styles($selector, $property, $value) {
+
+	switch($property) {
+		case 	$property === "color" || 
+				$property === "background-color":
+					$value = "#".$value;
+					break;
+
+		case 	$property === "border-width" ||
+				$property === "width":
+					$value = $value."px";
+					break;
+	}
+
+	$output = "<style>" . $selector . "{" . $property . ":" . $value . "}</style>"; // Standard CSS Output
+	echo $output;
+}
+
+
 explodeURL();
 
-/*
+
 	
-	$abbreviations array( 
+	
 
-		"p" 	=> "body",
-		"b"		=> "button",
-		"c"		=> "color",
-		"bgc"	=> "background-color"
-	)
+	$fooz = "c";
 
+	//echo $abbreviations[$fooz];
+
+/*
 	print_r($abbreviations);
 
 
